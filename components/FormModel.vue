@@ -7,7 +7,7 @@
           <label for="title" class="font-bold">Title</label>
           <UInput size="sm" class="mb-10" v-model="title" />
           <label for="description" class="font-bold">What is it about?</label>
-          <UTextarea autoresize rows="12" :maxrows="5" v-model="description" />
+          <UTextarea autoresize :rows="12" :maxrows="5" v-model="description" />
         </div>
 
         <div>
