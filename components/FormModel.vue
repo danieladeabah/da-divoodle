@@ -4,16 +4,16 @@
     <ViewBoxModel :title="editMode ? 'Edit survey' : 'Create a survey'">
       <div class="flex flex-col lg:flex-row gap-10 p-10">
         <div class="w-[100%] lg:w-[50%]">
-          <label for="title" class="font-bold">Title</label>
+          <label for="title" class="font-bold">{{ texts.formDataTitle }}</label>
           <UInput size="sm" class="mb-10" v-model="title" />
-          <label for="description" class="font-bold">What is it about?</label>
+          <label for="description" class="font-bold">{{ texts.formDataDescription }}</label>
           <UTextarea autoresize :rows="12" :maxrows="5" v-model="description" />
         </div>
 
         <div>
           <h1 class="text-xl font-bold mb-2">
-            Define your options:
-            <span class="text-gray-400 font-extralight">(max. 10)</span>
+            {{ texts.optionsTitle }}
+            <span class="text-gray-400 font-extralight">{{ texts.optionsMaxText }}</span>
           </h1>
           <div class="flex flex-col gap-4">
             <div
@@ -73,8 +73,8 @@
 
         <div>
           <h1 class="text-xl font-bold mb-2">
-            Options:
-            <span class="text-gray-400 font-extralight">(Single Choice)</span>
+            {{ texts.previewOptionTitle }}
+            <span class="text-gray-400 font-extralight">{{ texts.previewOptionMaxText }}</span>
           </h1>
           <ol>
             <li v-for="(option, index) in options" :key="index">
@@ -116,6 +116,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import texts from '../texts/texts.json';
 
 const activeTab = ref("formModel");
 const route = useRoute();

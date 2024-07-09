@@ -8,8 +8,8 @@
 
       <div class="flex flex-col w-full lg:w-1/2">
         <h1 class="text-xl font-bold mb-2">
-          Options:
-          <span class="text-gray-400 font-extralight">(Single Choice)</span>
+          {{ texts.previewOptionTitle }}
+          <span class="text-gray-400 font-extralight">{{ texts.previewOptionMaxText }}</span>
         </h1>
         <div class="flex flex-col gap-2">
           <label
@@ -48,6 +48,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import texts from '../texts/texts.json';
 
 const route = useRoute();
 const router = useRouter();

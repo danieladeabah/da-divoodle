@@ -8,8 +8,8 @@
 
       <div>
         <h1 class="text-xl font-bold mb-2">
-          Options:
-          <span class="text-gray-400 font-extralight">(Single Choice)</span>
+          {{ texts.previewOptionTitle }}
+          <span class="text-gray-400 font-extralight">{{ texts.previewOptionMaxText }}</span>
         </h1>
         <div class="w-full lg:w-[24.5rem]">
           <div
@@ -35,9 +35,9 @@
           </div>
         </div>
         <div class="flex flex-row items-center justify-between my-4">
-          <span class="text-gray-400 font-extralight">Total Votes:</span>
+          <span class="text-gray-400 font-extralight">{{ texts.resultsTotalVotesPlural }}</span>
           <span class="text-gray-400 font-extralight"
-            >{{ totalVotes }} Votes</span
+            >{{ totalVotes }} {{ texts.resultsVotes }}</span
           >
         </div>
       </div>
@@ -48,6 +48,7 @@
 <script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import texts from '../texts/texts.json';
 
 const route = useRoute();
 const surveyId = route.params.id;

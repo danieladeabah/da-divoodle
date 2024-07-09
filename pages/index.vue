@@ -3,9 +3,9 @@
     class="font-sans container flex flex-col items-center justify-center mx-auto min-h-[90vh]"
   >
     <div class="flex flex-col items-center my-10">
-      <h1 class="font-bold text-4xl">Hej!</h1>
+      <h1 class="font-bold text-4xl">{{ texts.landingUserName }}</h1>
       <p class="text-2xl font-light w-[170px] text-center">
-        What would you like to do?
+        {{ texts.landingUserDescription }}
       </p>
     </div>
     <div class="flex gap-5">
@@ -26,6 +26,8 @@
 </template>
 
 <script setup>
+import texts from '../texts/texts.json';
+
 useHead({
   title: "Divoodle!",
 });

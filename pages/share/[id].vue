@@ -1,12 +1,11 @@
 <template>
   <ViewBoxModel :title="'Share your Survey'">
     <p class="px-20 py-5 text-gray-400 text-lg">
-      Your Divoodle has been created! Now it is time to share it, or participate
-      yourself!
+      {{ texts.shareTitle }}
     </p>
     <div class="flex flex-col lg:flex-row gap-10 px-20 w-[80vw]">
       <div class="w-[100%] lg:w-[50%]">
-        <label for="editLink" class="font-bold">Edit Link</label>
+        <label for="editLink" class="font-bold">{{ texts.editLinkTitle }}</label>
         <div class="flex flex-row gap-5 items-center justify-center">
           <div
             class="flex flex-row gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center"
@@ -26,13 +25,12 @@
           </div>
         </div>
         <p class="text-gray-400 w-[60vw] lg:w-[30vw]">
-          Copy this link and send it to others so they can edit and participate
-          in your Divoodle
+          {{ texts.shareEditLinkText }}
         </p>
       </div>
 
       <div>
-        <label for="shareLink" class="font-bold">Participation Link</label>
+        <label for="shareLink" class="font-bold">{{ texts.participationLinkTitle }}</label>
         <div class="flex flex-row gap-5 items-center justify-center">
           <div
             class="flex flex-row gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center"
@@ -52,8 +50,7 @@
           </div>
         </div>
         <p class="text-gray-400 w-[60vw] lg:w-[30vw]">
-          Copy this link and send it to others so they can participate in your
-          Divoodle
+         {{ texts.shareParticipationLinkText }}
         </p>
       </div>
     </div>
@@ -81,6 +78,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import texts from '../texts/texts.json';
 
 const route = useRoute();
 const surveyId = route.params.id;

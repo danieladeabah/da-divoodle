@@ -1,0 +1,18 @@
+{
+    "formDataTitle": "Title",
+    "formDataDescription": "What is it about?",
+    "optionsTitle": "Define your options:",
+    "optionsMaxText": "(max. 10)",
+    "previewOptionTitle": "Options:",
+    "previewOptionMaxText": "(Single Choice)",
+    "resultsVotes": "Votes:",
+    "resultsTotalVotesPlural": "Total votes:",
+    "shareTitle": "Your Divoodle has been created! Now it is time to share it, or participate yourself!",
+    "shareEditLinkText": "Copy this link and send it to others so they can edit and participate in your Divoodle",
+    "shareParticipationLinkText": "Copy this link and send it to others so they can participate in your Divoodle",
+    "editLinkTitle": "Edit Link",
+    "participationLinkTitle": "Participation Link",
+    "landingUserName": "Hej!",
+    "landingUserDescription": "What would you like to do?"
+  }
+  
