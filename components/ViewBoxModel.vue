@@ -6,7 +6,7 @@
       <div class="flex flex-row items-center justify-between my-10 w-[80vw]">
         <p class="text-2xl font-semibold">
           {{
-            route.path === `/edit/${$route.params.id}`
+            route.path === `/edit/${route.params.id}`
               ? "Edit survey"
               : title
           }}
