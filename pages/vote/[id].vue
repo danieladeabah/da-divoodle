@@ -69,8 +69,6 @@ const survey = computed(() => {
 
 const submitVote = () => {
   if (selectedOption.value) {
-    console.log("Selected option:", selectedOption.value);
-
     // Simulate updating vote count
     const updatedSurvey = { ...survey.value };
     updatedSurvey.options.forEach((option) => {
