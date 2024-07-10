@@ -9,7 +9,9 @@
       <div class="flex flex-col w-full lg:w-1/2">
         <h1 class="text-xl font-bold mb-2">
           {{ texts.previewOptionTitle }}
-          <span class="text-gray-400 font-extralight">{{ texts.previewOptionMaxText }}</span>
+          <span class="text-gray-400 font-extralight">{{
+            texts.previewOptionMaxText
+          }}</span>
         </h1>
         <div class="flex flex-col gap-2">
           <label
@@ -19,6 +21,7 @@
           >
             {{ index + 1 }}.
             <div
+              :class="{ 'selected-option': selectedOption === option.text }"
               class="ml-2 flex flex-row items-center justify-between gap-40 hover:bg-[#7FD3AF] p-2 rounded-2xl w-[300px]"
             >
               {{ option.text }}
@@ -48,7 +51,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import texts from '../texts/texts.json';
+import texts from "../texts/texts.json";
 
 const route = useRoute();
 const router = useRouter();
@@ -92,3 +95,9 @@ useHead({
   title: "Vote on survey",
 });
 </script>
+
+<style scoped>
+.selected-option {
+  background-color: #00a860;
+}
+</style>
