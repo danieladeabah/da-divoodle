@@ -1,13 +1,11 @@
 <template>
   <div class="font-sans relative shapes-container">
-    <!-- Navigation -->
     <nav class="p-4">
       <NuxtLink to="/">
         <img src="../assets/divoodle_Logo_neu.svg" alt="Logo" />
       </NuxtLink>
     </nav>
 
-    <!-- Slot for content -->
     <div class="content-container">
       <slot></slot>
     </div>

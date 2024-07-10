@@ -6,9 +6,7 @@
       <div class="flex flex-row items-center justify-between my-10 w-[80vw]">
         <p class="text-2xl font-semibold">
           {{
-            route.path === `/edit/${route.params.id}`
-              ? "Edit survey"
-              : title
+            route.path === `/edit/${route.params.id}` ? "Edit survey" : title
           }}
         </p>
         <NuxtLink to="/">
@@ -20,7 +18,6 @@
         </NuxtLink>
       </div>
 
-      <!-- Slot for content -->
       <div class="bg-white w-[100vw] lg:w-[80vw] rounded-[55px] shadow-lg p-6">
         <slot></slot>
       </div>

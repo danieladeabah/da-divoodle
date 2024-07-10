@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import texts from '../texts/texts.json';
+import texts from "../texts/texts.json";
 
 useHead({
   title: "Divoodle!",

@@ -5,7 +5,9 @@
     </p>
     <div class="flex flex-col lg:flex-row gap-10 px-20 w-[80vw]">
       <div class="w-[100%] lg:w-[50%]">
-        <label for="editLink" class="font-bold">{{ texts.editLinkTitle }}</label>
+        <label for="editLink" class="font-bold">{{
+          texts.editLinkTitle
+        }}</label>
         <div class="flex flex-row gap-5 items-center justify-center">
           <div
             class="flex flex-row gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center"
@@ -30,7 +32,9 @@
       </div>
 
       <div>
-        <label for="shareLink" class="font-bold">{{ texts.participationLinkTitle }}</label>
+        <label for="shareLink" class="font-bold">{{
+          texts.participationLinkTitle
+        }}</label>
         <div class="flex flex-row gap-5 items-center justify-center">
           <div
             class="flex flex-row gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center"
@@ -50,7 +54,7 @@
           </div>
         </div>
         <p class="text-gray-400 w-[60vw] lg:w-[30vw]">
-         {{ texts.shareParticipationLinkText }}
+          {{ texts.shareParticipationLinkText }}
         </p>
       </div>
     </div>
@@ -78,7 +82,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import texts from '../texts/texts.json';
+import texts from "../texts/texts.json";
 
 const route = useRoute();
 const surveyId = route.params.id;
