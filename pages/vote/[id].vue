@@ -22,7 +22,7 @@
             {{ index + 1 }}.
             <div
               :class="{ 'selected-option': selectedOption === option.text }"
-              class="ml-2 flex flex-row items-center justify-between gap-40 hover:bg-[#7FD3AF] p-2 rounded-2xl w-[300px]"
+              class="ml-2 flex flex-row items-center justify-between gap-40 hover:bg-[#7FD3AF] p-2 rounded-2xl w-[300px] option-container"
             >
               {{ option.text }}
               <input
@@ -30,6 +30,7 @@
                 :name="'framework'"
                 :value="option.text"
                 v-model="selectedOption"
+                class="option-input"
               />
             </div>
           </label>
@@ -97,5 +98,12 @@ useHead({
 <style scoped>
 .selected-option {
   background-color: #00a860;
+}
+.option-input {
+  display: none;
+}
+.option-container:hover .option-input,
+.option-container.selected-option .option-input {
+  display: block;
 }
 </style>
