@@ -1,8 +1,8 @@
 <template>
   <SpeedInsights />
-  <AppContainer>
+  <Container>
     <NuxtPage />
-  </AppContainer>
+  </Container>
 </template>
 
 <script setup lang="ts">

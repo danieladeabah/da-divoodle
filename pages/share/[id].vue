@@ -1,5 +1,5 @@
 <template>
-  <ViewBoxModel :title="'Share your Survey'">
+  <ViewBox :title="'Share your Survey'">
     <p class="px-20 py-5 text-gray-400 text-lg">
       {{ texts.shareTitle }}
     </p>
@@ -76,7 +76,7 @@
         />
       </NuxtLink>
     </div>
-  </ViewBoxModel>
+  </ViewBox>
 </template>
 
 <script setup>

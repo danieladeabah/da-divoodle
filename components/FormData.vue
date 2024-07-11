@@ -1,7 +1,7 @@
 <template>
   <!-- form model -->
   <div v-if="activeTab === 'formModel'">
-    <ViewBoxModel :title="editMode ? 'Edit survey' : 'Create a survey'">
+    <ViewBox :title="editMode ? 'Edit survey' : 'Create a survey'">
       <div class="flex flex-col lg:flex-row gap-10 p-10">
         <div class="w-[100%] lg:w-[50%]">
           <label for="title" class="font-bold">{{ texts.formDataTitle }}</label>
@@ -63,12 +63,12 @@
           :disabled="!isFormValid"
         />
       </div>
-    </ViewBoxModel>
+    </ViewBox>
   </div>
 
   <!-- preview -->
   <div v-if="activeTab === 'preview'">
-    <ViewBoxModel :title="'Survey Preview'">
+    <ViewBox :title="'Survey Preview'">
       <div class="flex flex-col lg:flex-row gap-10 p-10">
         <div class="flex flex-col gap-4 w-[100%] lg:w-[50%]">
           <span class="font-bold">{{ title }}</span>
@@ -115,7 +115,7 @@
           @click="saveSurvey"
         />
       </div>
-    </ViewBoxModel>
+    </ViewBox>
   </div>
 </template>
 

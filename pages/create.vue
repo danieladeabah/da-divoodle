@@ -1,3 +1,3 @@
 <template>
-  <FormModel />
+  <FormData />
 </template>

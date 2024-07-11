@@ -1,5 +1,5 @@
 <template>
-  <FormModel />
+  <FormData />
 </template>
 
 <script setup>

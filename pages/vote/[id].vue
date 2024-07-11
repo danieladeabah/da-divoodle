@@ -1,5 +1,5 @@
 <template>
-  <ViewBoxModel :title="'Vote on Survey'">
+  <ViewBox :title="'Vote on Survey'">
     <div class="flex flex-col lg:flex-row gap-10 p-10">
       <div class="flex flex-col gap-4 w-full lg:w-1/2">
         <span class="font-bold">{{ survey.title }}</span>
@@ -45,7 +45,7 @@
         :disabled="!selectedOption"
       />
     </div>
-  </ViewBoxModel>
+  </ViewBox>
 </template>
 
 <script setup>

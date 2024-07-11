@@ -1,5 +1,5 @@
 <template>
-  <ViewBoxModel :title="'Survey Results'">
+  <ViewBox :title="'Survey Results'">
     <div class="flex flex-col lg:flex-row gap-10 p-10">
       <div class="flex flex-col gap-4 w-[100%] lg:w-[50%]">
         <label for="title" class="font-bold">{{ survey.title }}</label>
@@ -46,13 +46,14 @@
         </div>
       </div>
     </div>
-  </ViewBoxModel>
+  </ViewBox>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import texts from "../texts/texts.json";
+import ViewBox from "~/components/ViewBox.vue";
 
 const route = useRoute();
 const surveyId = route.params.id;
