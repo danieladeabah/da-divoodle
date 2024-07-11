@@ -50,35 +50,35 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useSurveyStore } from '@/store/survey'
-import texts from '../texts/texts.json'
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { useSurveyStore } from "@/store/survey";
+import texts from "../texts/texts.json";
 
-const route = useRoute()
-const surveyId = route.params.id
-const surveyStore = useSurveyStore()
+const route = useRoute();
+const surveyId = route.params.id;
+const surveyStore = useSurveyStore();
 
 const survey = computed(() => {
-  return surveyStore.getSurveyById(surveyId)
-})
+  return surveyStore.getSurveyById(surveyId);
+});
 
 // Calculate total votes
 const totalVotes = computed(() => {
   if (survey.value) {
-    return survey.value.options.reduce((acc, option) => acc + option.votes, 0)
+    return survey.value.options.reduce((acc, option) => acc + option.votes, 0);
   }
-  return 0
-})
+  return 0;
+});
 
 // Calculate percentage of votes for each option
 const calculatePercentage = (votes) => {
   return totalVotes.value > 0
     ? Math.round((votes / totalVotes.value) * 100)
-    : 0
-}
+    : 0;
+};
 
 useHead({
-  title: 'Survey Results',
-})
+  title: "Survey Results",
+});
 </script>

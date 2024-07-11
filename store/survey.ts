@@ -22,7 +22,10 @@ export const useSurveyStore = defineStore("survey", {
       } else {
         this.surveys.push(survey);
       }
-      localStorage.setItem("surveyData", JSON.stringify({ surveys: this.surveys }));
+      localStorage.setItem(
+        "surveyData",
+        JSON.stringify({ surveys: this.surveys })
+      );
     },
 
     getSurveyById(id: string): Survey | undefined {
