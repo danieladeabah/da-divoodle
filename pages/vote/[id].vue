@@ -2,8 +2,8 @@
   <ViewBox :title="'Vote on Survey'">
     <div class="flex flex-col lg:flex-row gap-10 p-10">
       <div class="flex flex-col gap-4 w-full lg:w-1/2">
-        <span class="font-bold">{{ survey.title }}</span>
-        <span>{{ survey.description }}</span>
+        <span class="font-bold">{{ survey?.title }}</span>
+        <span>{{ survey?.description }}</span>
       </div>
 
       <div class="flex flex-col w-full lg:w-1/2">
@@ -15,7 +15,7 @@
         </h1>
         <div class="flex flex-col gap-2">
           <label
-            v-for="(option, index) in survey.options"
+            v-for="(option, index) in survey?.options"
             :key="option.id"
             class="flex flex-row items-center cursor-pointer"
           >
@@ -50,35 +50,38 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useSurveyStore } from '@/store/survey'
-import texts from '../texts/texts.json'
+import { ref, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useSurveyStore } from "@/store/survey";
+import texts from "../texts/texts.json";
 
-const route = useRoute()
-const router = useRouter()
-const surveyStore = useSurveyStore()
-const surveyId = route.params.id
+const route = useRoute();
+const router = useRouter();
+const surveyStore = useSurveyStore();
+const surveyId = route.params.id;
 
-const selectedOption = ref(null)
+const selectedOption = ref(null);
 
-surveyStore.loadSurveys()
+onMounted(() => {
+  surveyStore.loadSurveys();
+});
+
 const survey = computed(() => {
-  return surveyStore.getSurveyById(surveyId)
-})
+  return surveyStore.getSurveyById(surveyId);
+});
 
 const submitVote = () => {
   if (selectedOption.value) {
-    surveyStore.addVote(surveyId, selectedOption.value)
-    router.push(`/results/${surveyId}`)
+    surveyStore.addVote(surveyId, selectedOption.value);
+    router.push(`/results/${surveyId}`);
   } else {
-    alert('Please select an option before submitting.')
+    alert("Please select an option before submitting.");
   }
-}
+};
 
 useHead({
-  title: 'Vote on survey',
-})
+  title: "Vote on survey",
+});
 </script>
 
 <style scoped>

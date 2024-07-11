@@ -210,5 +210,7 @@ useHead({
   title: route.path === "/create" ? "Create a Survey" : "Edit Survey",
 });
 
-loadSurvey();
+onMounted(() => {
+  loadSurvey();
+});
 </script>

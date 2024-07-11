@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
 import texts from "../texts/texts.json";
@@ -58,6 +58,10 @@ import texts from "../texts/texts.json";
 const route = useRoute();
 const surveyId = route.params.id;
 const surveyStore = useSurveyStore();
+
+onMounted(() => {
+  surveyStore.loadSurveys();
+});
 
 const survey = computed(() => {
   return surveyStore.getSurveyById(surveyId);
