@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  plugins: ['~/plugins/pinia'],
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
   modules: ["nuxt-icon", "nuxt-snackbar", "@nuxt/ui"],
