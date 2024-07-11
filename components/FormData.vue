@@ -120,10 +120,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useSurveyStore } from "@/store/survey";
 import texts from "../texts/texts.json";
 
+const surveyStore = useSurveyStore();
 const activeTab = ref("formModel");
 const route = useRoute();
 const router = useRouter();
@@ -131,7 +133,7 @@ let editMode = ref(false);
 
 const title = ref("");
 const description = ref("");
-const options = ref([{ text: "" }, { text: "" }]); // Initialize with 2 empty options
+const options = ref([{ text: "" }, { text: "" }]);
 
 const goToPreview = () => {
   activeTab.value = "preview";
@@ -142,7 +144,7 @@ const goToFormModel = () => {
 };
 
 const goToEdit = () => {
-  editMode = true;
+  editMode.value = true;
   activeTab.value = "formModel";
 };
 
@@ -175,10 +177,8 @@ watch(
 
 const loadSurvey = () => {
   if (route.path.includes("/edit")) {
-    const surveyData = JSON.parse(localStorage.getItem("surveyData")) || {
-      surveys: [],
-    };
-    const survey = surveyData.surveys.find((s) => s.id === route.params.id);
+    surveyStore.loadSurveys();
+    const survey = surveyStore.getSurveyById(route.params.id);
     if (survey) {
       title.value = survey.title;
       description.value = survey.description;
@@ -188,9 +188,6 @@ const loadSurvey = () => {
 };
 
 const saveSurvey = () => {
-  const surveyData = JSON.parse(localStorage.getItem("surveyData")) || {
-    surveys: [],
-  };
   const survey = {
     id: route.params.id || `${Date.now()}`,
     title: title.value,
@@ -205,16 +202,7 @@ const saveSurvey = () => {
     shareLink: `${Date.now()}`,
   };
 
-  if (route.path === "/create") {
-    surveyData.surveys.push(survey);
-  } else {
-    const surveyIndex = surveyData.surveys.findIndex((s) => s.id === survey.id);
-    if (surveyIndex !== -1) {
-      surveyData.surveys[surveyIndex] = survey;
-    }
-  }
-
-  localStorage.setItem("surveyData", JSON.stringify(surveyData));
+  surveyStore.saveSurvey(survey);
   router.push(`/share/${survey.id}`);
 };
 

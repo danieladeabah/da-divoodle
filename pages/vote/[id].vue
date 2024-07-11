@@ -50,49 +50,35 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import texts from "../texts/texts.json";
+import { ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useSurveyStore } from '@/store/survey'
+import texts from '../texts/texts.json'
 
-const route = useRoute();
-const router = useRouter();
-const surveyId = route.params.id;
+const route = useRoute()
+const router = useRouter()
+const surveyStore = useSurveyStore()
+const surveyId = route.params.id
 
-const selectedOption = ref(null);
+const selectedOption = ref(null)
 
-// Fetching survey data from localStorage
-const surveyData = JSON.parse(localStorage.getItem("surveyData")) || {
-  surveys: [],
-};
+surveyStore.loadSurveys()
 const survey = computed(() => {
-  return surveyData.surveys.find((s) => s.id === surveyId);
-});
+  return surveyStore.getSurveyById(surveyId)
+})
 
 const submitVote = () => {
   if (selectedOption.value) {
-    // Simulate updating vote count
-    const updatedSurvey = { ...survey.value };
-    updatedSurvey.options.forEach((option) => {
-      if (option.text === selectedOption.value) {
-        option.votes++;
-      }
-    });
-
-    // Save updated survey data back to localStorage
-    const index = surveyData.surveys.findIndex((s) => s.id === surveyId);
-    surveyData.surveys[index] = updatedSurvey;
-    localStorage.setItem("surveyData", JSON.stringify(surveyData));
-
-    // Redirect to results page after submitting vote
-    router.push(`/results/${surveyId}`);
+    surveyStore.addVote(surveyId, selectedOption.value)
+    router.push(`/results/${surveyId}`)
   } else {
-    alert("Please select an option before submitting.");
+    alert('Please select an option before submitting.')
   }
-};
+}
 
 useHead({
-  title: "Vote on survey",
-});
+  title: 'Vote on survey',
+})
 </script>
 
 <style scoped>

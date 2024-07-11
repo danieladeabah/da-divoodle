@@ -80,43 +80,42 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
-import texts from "../texts/texts.json";
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useSurveyStore } from '@/store/survey'
+import texts from '../texts/texts.json'
 
-const route = useRoute();
-const surveyId = route.params.id;
-const editLink = ref("");
-const shareLink = ref("");
+const route = useRoute()
+const surveyId = route.params.id
+const surveyStore = useSurveyStore()
+const editLink = ref('')
+const shareLink = ref('')
 
 const loadSurveyLinks = () => {
-  const surveyData = JSON.parse(localStorage.getItem("surveyData")) || {
-    surveys: [],
-  };
-  const survey = surveyData.surveys.find((s) => s.id === surveyId);
-
+  surveyStore.loadSurveys()
+  const survey = surveyStore.getSurveyById(surveyId)
   if (survey) {
-    editLink.value = `${window.location.origin}/edit/${survey.editLink}`;
-    shareLink.value = `${window.location.origin}/vote/${survey.shareLink}`;
+    editLink.value = `${window.location.origin}/edit/${survey.editLink}`
+    shareLink.value = `${window.location.origin}/vote/${survey.shareLink}`
   }
-};
+}
 
 const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text).then(
     () => {
-      alert("Link copied to clipboard");
+      alert('Link copied to clipboard')
     },
     () => {
-      alert("Failed to copy link");
+      alert('Failed to copy link')
     }
-  );
-};
+  )
+}
 
 onMounted(() => {
-  loadSurveyLinks();
-});
+  loadSurveyLinks()
+})
 
 useHead({
-  title: "Share survey",
-});
+  title: 'Share survey',
+})
 </script>

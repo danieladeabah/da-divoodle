@@ -2,8 +2,8 @@
   <ViewBox :title="'Survey Results'">
     <div class="flex flex-col lg:flex-row gap-10 p-10">
       <div class="flex flex-col gap-4 w-[100%] lg:w-[50%]">
-        <label for="title" class="font-bold">{{ survey.title }}</label>
-        <span>{{ survey.description }}</span>
+        <label for="title" class="font-bold">{{ survey?.title }}</label>
+        <span>{{ survey?.description }}</span>
       </div>
 
       <div>
@@ -15,7 +15,7 @@
         </h1>
         <div class="w-full lg:w-[24.5rem]">
           <div
-            v-for="(option, index) in survey.options"
+            v-for="(option, index) in survey?.options"
             :key="option.id"
             class="flex flex-row items-center justify-between gap-5 mb-2"
           >
@@ -50,38 +50,35 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import texts from "../texts/texts.json";
-import ViewBox from "~/components/ViewBox.vue";
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useSurveyStore } from '@/store/survey'
+import texts from '../texts/texts.json'
 
-const route = useRoute();
-const surveyId = route.params.id;
+const route = useRoute()
+const surveyId = route.params.id
+const surveyStore = useSurveyStore()
 
-// Fetching survey data from localStorage
-const surveyData = JSON.parse(localStorage.getItem("surveyData")) || {
-  surveys: [],
-};
 const survey = computed(() => {
-  return surveyData.surveys.find((s) => s.id === surveyId);
-});
+  return surveyStore.getSurveyById(surveyId)
+})
 
 // Calculate total votes
 const totalVotes = computed(() => {
   if (survey.value) {
-    return survey.value.options.reduce((acc, option) => acc + option.votes, 0);
+    return survey.value.options.reduce((acc, option) => acc + option.votes, 0)
   }
-  return 0;
-});
+  return 0
+})
 
 // Calculate percentage of votes for each option
 const calculatePercentage = (votes) => {
   return totalVotes.value > 0
     ? Math.round((votes / totalVotes.value) * 100)
-    : 0;
-};
+    : 0
+}
 
 useHead({
-  title: "Survey Results",
-});
+  title: 'Survey Results',
+})
 </script>
