@@ -124,6 +124,7 @@
 import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
+import { encodeBase62 } from "@/utils/encodeBase62";
 import texts from "../texts/texts.json";
 
 const surveyStore = useSurveyStore();
@@ -190,9 +191,12 @@ const loadSurvey = () => {
   }
 };
 
+const uniqueNumber = Date.now();
+const surveyId = encodeBase62(uniqueNumber).slice(0, 6);
+
 const saveSurvey = () => {
   const survey = {
-    id: route.params.id || `${Date.now()}`,
+    id: route.params.id || surveyId,
     title: title.value,
     description: description.value,
     options: options.value.map((option, index) => ({
@@ -200,8 +204,6 @@ const saveSurvey = () => {
       text: option.text,
       votes: 0,
     })),
-    editLink: `${Date.now()}`,
-    shareLink: `${Date.now()}`,
   };
 
   surveyStore.saveSurvey(survey);

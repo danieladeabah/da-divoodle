@@ -95,8 +95,8 @@ const loadSurveyLinks = () => {
   surveyStore.loadSurveys();
   const survey = surveyStore.getSurveyById(surveyId);
   if (survey) {
-    editLink.value = `${window.location.origin}/edit/${survey.editLink}`;
-    shareLink.value = `${window.location.origin}/vote/${survey.shareLink}`;
+    editLink.value = `${window.location.origin}/edit/${survey.id}`;
+    shareLink.value = `${window.location.origin}/vote/${survey.id}`;
   }
 };
 
