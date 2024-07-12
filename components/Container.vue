@@ -16,6 +16,7 @@
 body {
   font-family: "MyFont", sans-serif;
   background-color: #f4f0e5;
+  color: #1a1a1a;
   margin: 0;
   padding: 0;
 }
