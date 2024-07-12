@@ -4,7 +4,7 @@
   >
     <div class="flex flex-col items-center my-10">
       <h1 class="font-bold text-4xl">{{ texts.landingUserName }}</h1>
-      <p class="text-2xl font-light w-[170px] text-center">
+      <p class="text-2xl font-light max-w-xs text-center">
         {{ texts.landingUserDescription }}
       </p>
     </div>
@@ -17,7 +17,7 @@
       <NuxtLink to="/create">
         <UButton
           size="sm"
-          label="Do a survey"
+          label="Create a survey"
           class="bg-[#00A860] rounded-2xl shadow-md px-6"
         />
       </NuxtLink>

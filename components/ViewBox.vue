@@ -3,17 +3,15 @@
     class="font-sans container flex flex-col items-center justify-center mx-auto"
   >
     <div class="flex flex-col w-[80vw] items-center my-10">
-      <div class="flex flex-row items-center justify-between my-10 w-[80vw]">
+      <div class="flex items-center justify-between my-10 w-[80vw]">
         <p class="text-2xl font-semibold">
-          {{
-            route.path === `/edit/${route.params.id}` ? "Edit survey" : title
-          }}
+          {{ isEditMode ? "Edit Survey" : title }}
         </p>
         <NuxtLink to="/">
           <button
             class="p-2 bg-white w-[35px] h-[35px] shadow-lg rounded-[50%]"
           >
-            <img src="../assets/closeIcon.svg" alt="Logo" />
+            <img src="../assets/closeIcon.svg" alt="Close Icon" />
           </button>
         </NuxtLink>
       </div>
@@ -27,6 +25,8 @@
 
 <script setup>
 const route = useRoute();
+const isEditMode = route.path === `/edit/${route.params.id}`;
+
 defineProps({
   title: String,
 });

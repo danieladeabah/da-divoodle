@@ -1,78 +1,82 @@
 <template>
   <ViewBox :title="'Share your Survey'">
-    <p class="px-20 py-5 text-gray-400 text-lg">
+    <p class="px-4 lg:px-20 py-5 text-gray-400 text-lg">
       {{ texts.shareTitle }}
     </p>
-    <div class="flex flex-col lg:flex-row gap-10 px-20 w-[80vw]">
-      <div class="w-[100%] lg:w-[50%]">
-        <label for="editLink" class="font-bold">{{
-          texts.editLinkTitle
-        }}</label>
-        <div class="flex flex-row gap-5 items-center justify-center">
-          <div
-            class="flex flex-row gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center"
-          >
-            <UInput
-              size="sm"
-              class="w-[55vw] lg:w-[35vw]"
-              v-model="editLink"
-              readonly
-            />
-            <img
-              src="/assets/copyIcon.svg"
-              alt="copy"
-              class="cursor-pointer"
-              @click="copyToClipboard(editLink)"
-            />
+    <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 px-4 lg:px-20 w-full">
+      <div class="w-full lg:w-1/2">
+        <div class="flex flex-col gap-4">
+          <span class="font-bold">{{ texts.editLinkTitle }}</span>
+          <div class="flex items-center">
+            <div
+              class="flex gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center flex-grow"
+            >
+              <UInput
+                size="sm"
+                :class="{ 'w-full': true }"
+                v-model="editLink"
+                readonly
+              />
+              <img
+                src="/assets/copyIcon.svg"
+                alt="copy"
+                class="cursor-pointer"
+                @click="copyToClipboard(editLink)"
+              />
+            </div>
           </div>
+          <p class="text-gray-400">
+            {{ texts.shareEditLinkText }}
+          </p>
         </div>
-        <p class="text-gray-400 w-[60vw] lg:w-[30vw]">
-          {{ texts.shareEditLinkText }}
-        </p>
       </div>
 
-      <div>
-        <label for="shareLink" class="font-bold">{{
-          texts.participationLinkTitle
-        }}</label>
-        <div class="flex flex-row gap-5 items-center justify-center">
-          <div
-            class="flex flex-row gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center"
-          >
-            <UInput
-              size="sm"
-              class="w-[55vw] lg:w-[30vw]"
-              v-model="shareLink"
-              readonly
-            />
-            <img
-              src="/assets/copyIcon.svg"
-              alt="copy"
-              class="cursor-pointer"
-              @click="copyToClipboard(shareLink)"
-            />
+      <div class="w-full lg:w-1/2">
+        <div class="flex flex-col gap-4">
+          <span class="font-bold">{{ texts.participationLinkTitle }}</span>
+          <div class="flex items-center">
+            <div
+              class="flex gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center flex-grow"
+            >
+              <UInput
+                size="sm"
+                :class="{ 'w-full': true }"
+                v-model="shareLink"
+                readonly
+              />
+              <img
+                src="/assets/copyIcon.svg"
+                alt="copy"
+                class="cursor-pointer"
+                @click="copyToClipboard(shareLink)"
+              />
+            </div>
           </div>
+          <p class="text-gray-400">
+            {{ texts.shareParticipationLinkText }}
+          </p>
         </div>
-        <p class="text-gray-400 w-[60vw] lg:w-[30vw]">
-          {{ texts.shareParticipationLinkText }}
-        </p>
       </div>
     </div>
-    <div class="flex flex-row items-center justify-end gap-10 p-10">
+
+    <div
+      class="flex flex-col lg:flex-row items-center justify-end gap-6 lg:gap-10 p-4 lg:p-10"
+    >
+      <div></div>
       <NuxtLink :to="'/edit/' + surveyId">
         <UButton
           size="sm"
           label="Edit"
           color="primary"
           variant="outline"
-          class="rounded-2xl px-6 my-10"
+          class="rounded-2xl px-6 lg:px-8 my-2 lg:my-10"
         />
       </NuxtLink>
       <NuxtLink :to="'/vote/' + surveyId">
         <UButton
           size="sm"
           label="Participate"
-          class="flex justify-end bg-[#00A860] rounded-2xl shadow-md px-6 my-10"
+          class="flex justify-end bg-[#00A860] rounded-2xl shadow-md px-6 lg:px-8 my-2 lg:my-10"
         />
       </NuxtLink>
     </div>

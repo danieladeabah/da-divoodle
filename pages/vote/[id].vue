@@ -27,7 +27,7 @@
               {{ option.text }}
               <input
                 type="radio"
-                :name="'framework'"
+                :name="'surveyOption'"
                 :value="option.text"
                 v-model="selectedOption"
                 class="option-input"
@@ -50,7 +50,6 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
 import texts from "../texts/texts.json";

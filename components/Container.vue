@@ -1,10 +1,10 @@
 <template>
   <div class="font-sans relative shapes-container">
-    <nav class="p-4">
+    <header class="p-4">
       <NuxtLink to="/">
-        <img src="../assets/divoodle_Logo_neu.svg" alt="Logo" />
+        <img src="~/assets/divoodle_Logo_neu.svg" alt="Logo" class="logo" />
       </NuxtLink>
-    </nav>
+    </header>
 
     <div class="content-container">
       <slot></slot>
@@ -29,10 +29,6 @@ body {
   width: 0;
 }
 
-*::-webkit-scrollbar-track {
-  display: none;
-}
-
 .shapes-container {
   position: relative;
   min-height: 100vh;
@@ -53,7 +49,7 @@ body {
   right: 0;
   width: 300px;
   height: 300px;
-  background-image: url("../assets/shape01_neu.svg");
+  background-image: url("~/assets/shape01_neu.svg");
 }
 
 .shapes-container::after {
@@ -61,10 +57,9 @@ body {
   left: 0;
   width: 300px;
   height: 300px;
-  background-image: url("../assets/shape02_neu.svg");
+  background-image: url("~/assets/shape02_neu.svg");
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .shapes-container::before,
   .shapes-container::after {

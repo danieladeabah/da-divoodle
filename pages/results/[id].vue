@@ -1,25 +1,25 @@
 <template>
   <ViewBox :title="'Survey Results'">
-    <div class="flex flex-col lg:flex-row gap-10 p-10">
-      <div class="flex flex-col gap-4 w-[100%] lg:w-[50%]">
-        <label for="title" class="font-bold">{{ survey?.title }}</label>
+    <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 p-4 lg:p-10">
+      <div class="flex flex-col gap-4 w-full lg:w-1/2">
+        <span class="font-bold">{{ survey?.title }}</span>
         <span>{{ survey?.description }}</span>
       </div>
 
-      <div>
+      <div class="w-full lg:w-[24.5rem]">
         <h1 class="text-xl font-bold mb-2">
           {{ texts.previewOptionTitle }}
           <span class="text-gray-400 font-extralight">{{
             texts.previewOptionMaxText
           }}</span>
         </h1>
-        <div class="w-full lg:w-[24.5rem]">
+        <div>
           <div
             v-for="(option, index) in survey?.options"
             :key="option.id"
-            class="flex flex-row items-center justify-between gap-5 mb-2"
+            class="flex items-center gap-4 lg:gap-5 mb-2"
           >
-            <div class="relative flex flex-row items-center gap-5 w-full">
+            <div class="relative flex items-center gap-4 lg:gap-5 w-full">
               <span>{{ index + 1 }}.</span>
               <div
                 :style="{ width: `${calculatePercentage(option.votes)}%` }"
@@ -29,14 +29,16 @@
                   'rounded-l-xl': calculatePercentage(option.votes) !== 100,
                 }"
               ></div>
-              <span class="absolute left-10 text-sm">{{ option.text }}</span>
+              <span class="absolute left-4 lg:left-10 text-sm">{{
+                option.text
+              }}</span>
+              <span class="absolute right-4 lg:right-[8rem] text-sm"
+                >{{ calculatePercentage(option.votes) }}%</span
+              >
             </div>
-            <span class="absolute right-[8rem] lg:right-[33rem] text-sm"
-              >{{ calculatePercentage(option.votes) }}%</span
-            >
           </div>
         </div>
-        <div class="flex flex-row items-center justify-between my-4">
+        <div class="flex items-center justify-between my-4">
           <span class="text-gray-400 font-extralight">{{
             texts.resultsTotalVotesPlural
           }}</span>
@@ -50,9 +52,9 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
+import { computed, onMounted } from "vue";
 import texts from "../texts/texts.json";
 
 const route = useRoute();
@@ -84,3 +86,7 @@ useHead({
   title: "Survey Results",
 });
 </script>
+
+<style scoped>
+/* Additional styles can be added here for specific customizations */
+</style>
