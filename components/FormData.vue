@@ -200,7 +200,6 @@ const saveSurvey = () => {
       text: option.text,
       votes: 0,
     })),
-    totalVotes: 0,
     editLink: `${Date.now()}`,
     shareLink: `${Date.now()}`,
   };
