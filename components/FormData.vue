@@ -45,6 +45,7 @@
           </div>
 
           <UButton
+            v-if="options.length < 10"
             size="sm"
             icon="i-heroicons-plus"
             color="primary"
@@ -120,7 +121,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
 import texts from "../texts/texts.json";
@@ -129,7 +130,7 @@ const surveyStore = useSurveyStore();
 const activeTab = ref("formModel");
 const route = useRoute();
 const router = useRouter();
-let editMode = ref(false);
+const editMode = ref(false);
 
 const title = ref("");
 const description = ref("");
@@ -157,6 +158,8 @@ const addOption = () => {
 const removeOption = (index) => {
   if (options.value.length > 2) {
     options.value.splice(index, 1);
+  } else {
+    options.value[index].text = "";
   }
 };
 
