@@ -50,7 +50,6 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
 import texts from "../texts/texts.json";
 

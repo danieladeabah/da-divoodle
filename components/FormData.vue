@@ -1,7 +1,6 @@
 <template>
-  <!-- Form Model Section -->
   <div v-if="activeTab === 'formModel'" class="form-container">
-    <ViewBox :title="editMode ? 'Edit Survey' : 'Create Survey'">
+    <ViewBox :title="editMode ? 'Edit Survey' : boxTitle">
       <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 p-4 lg:p-10">
         <div class="w-full lg:w-1/2">
           <label for="title" class="font-bold">{{ texts.formDataTitle }}</label>
@@ -66,7 +65,6 @@
     </ViewBox>
   </div>
 
-  <!-- Preview Section -->
   <div v-else-if="activeTab === 'preview'" class="preview-container">
     <ViewBox :title="'Survey Preview'">
       <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 p-4 lg:p-10">
@@ -122,17 +120,24 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
 import { encodeBase62 } from "@/utils/encodeBase62";
 import texts from "../texts/texts.json";
 
+const props = defineProps({
+  boxTitle: {
+    type: String,
+    default: "",
+  },
+});
+
 const surveyStore = useSurveyStore();
 const route = useRoute();
 const router = useRouter();
+
 const editMode = ref(false);
 const activeTab = ref("formModel");
+
 const title = ref("");
 const description = ref("");
 const options = ref([{ text: "" }, { text: "" }]);
@@ -197,10 +202,6 @@ const saveSurvey = () => {
   surveyStore.saveSurvey(survey);
   router.push(`/share/${survey.id}`);
 };
-
-useHead({
-  title: route.path === "/create" ? "Create a Survey" : "Edit Survey",
-});
 
 onMounted(loadSurvey);
 </script>

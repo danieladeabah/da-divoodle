@@ -1,9 +1,9 @@
 <template>
-  <FormData />
+  <FormData :box-title="'Edit Survey'" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
-  title: "Edit survey",
-});
+  title: "Edit Survey",
+})
 </script>

@@ -4,74 +4,22 @@
       {{ texts.shareTitle }}
     </p>
     <div class="flex flex-col lg:flex-row gap-6 lg:gap-10 px-4 lg:px-20 w-full">
-      <div class="w-full lg:w-1/2">
-        <div class="flex flex-col gap-4">
-          <span class="font-bold">{{ texts.editLinkTitle }}</span>
-          <div class="flex items-center">
-            <div
-              class="flex gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center flex-grow"
-            >
-              <UInput
-                size="sm"
-                :class="{ 'w-full': true }"
-                v-model="editLink"
-                readonly
-              />
-              <img
-                src="/assets/copyIcon.svg"
-                alt="copy"
-                class="cursor-pointer"
-                @click="copyToClipboard(editLink)"
-              />
-            </div>
-          </div>
-          <p class="text-gray-400">
-            {{ texts.shareEditLinkText }}
-          </p>
-        </div>
-      </div>
-
-      <div class="w-full lg:w-1/2">
-        <div class="flex flex-col gap-4">
-          <span class="font-bold">{{ texts.participationLinkTitle }}</span>
-          <div class="flex items-center">
-            <div
-              class="flex gap-2 rounded-2xl border-[1px] border-green-100 pr-2 hover:bg-green-400 items-center justify-center flex-grow"
-            >
-              <UInput
-                size="sm"
-                :class="{ 'w-full': true }"
-                v-model="shareLink"
-                readonly
-              />
-              <img
-                src="/assets/copyIcon.svg"
-                alt="copy"
-                class="cursor-pointer"
-                @click="copyToClipboard(shareLink)"
-              />
-            </div>
-          </div>
-          <p class="text-gray-400">
-            {{ texts.shareParticipationLinkText }}
-          </p>
-        </div>
-      </div>
+      <ShareLink
+        :title="texts.editLinkTitle"
+        :inputValue="editLink"
+        :copied="copiedEditLink"
+        :description="texts.shareEditLinkText"
+        @copy="copyToClipboard(editLink, 'editLink')"
+      />
+      <ShareLink
+        :title="texts.participationLinkTitle"
+        :inputValue="shareLink"
+        :copied="copiedShareLink"
+        :description="texts.shareParticipationLinkText"
+        @copy="copyToClipboard(shareLink, 'shareLink')"
+      />
     </div>
-
-    <div
-      class="flex flex-col lg:flex-row items-center justify-end gap-6 lg:gap-10 p-4 lg:p-10"
-    >
-      <div></div>
-      <NuxtLink :to="'/edit/' + surveyId">
-        <UButton
-          size="sm"
-          label="Edit"
-          color="primary"
-          variant="outline"
-          class="rounded-2xl px-6 lg:px-8 my-2 lg:my-10"
-        />
-      </NuxtLink>
+    <div class="flex items-center justify-end gap-6 lg:gap-10 p-4 lg:p-10">
       <NuxtLink :to="'/vote/' + surveyId">
         <UButton
           size="sm"
@@ -84,8 +32,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
 import texts from "../texts/texts.json";
 
@@ -94,6 +40,8 @@ const surveyId = route.params.id;
 const surveyStore = useSurveyStore();
 const editLink = ref("");
 const shareLink = ref("");
+const copiedEditLink = ref(false);
+const copiedShareLink = ref(false);
 
 const loadSurveyLinks = () => {
   surveyStore.loadSurveys();
@@ -104,10 +52,20 @@ const loadSurveyLinks = () => {
   }
 };
 
-const copyToClipboard = (text) => {
+const copyToClipboard = (text, linkType) => {
   navigator.clipboard.writeText(text).then(
     () => {
-      alert("Link copied to clipboard");
+      if (linkType === "editLink") {
+        copiedEditLink.value = true;
+        setTimeout(() => {
+          copiedEditLink.value = false;
+        }, 3000);
+      } else if (linkType === "shareLink") {
+        copiedShareLink.value = true;
+        setTimeout(() => {
+          copiedShareLink.value = false;
+        }, 3000);
+      }
     },
     () => {
       alert("Failed to copy link");
@@ -115,9 +73,7 @@ const copyToClipboard = (text) => {
   );
 };
 
-onMounted(() => {
-  loadSurveyLinks();
-});
+onMounted(loadSurveyLinks);
 
 useHead({
   title: "Share survey",

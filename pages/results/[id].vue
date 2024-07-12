@@ -52,9 +52,7 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
 import { useSurveyStore } from "@/store/survey";
-import { computed, onMounted } from "vue";
 import texts from "../texts/texts.json";
 
 const route = useRoute();
@@ -86,7 +84,3 @@ useHead({
   title: "Survey Results",
 });
 </script>
-
-<style scoped>
-/* Additional styles can be added here for specific customizations */
-</style>

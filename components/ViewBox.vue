@@ -5,7 +5,7 @@
     <div class="flex flex-col w-[80vw] items-center my-10">
       <div class="flex items-center justify-between my-10 w-[80vw]">
         <p class="text-2xl font-semibold">
-          {{ isEditMode ? "Edit Survey" : title }}
+          {{ title }}
         </p>
         <NuxtLink to="/">
           <button
@@ -24,9 +24,6 @@
 </template>
 
 <script setup>
-const route = useRoute();
-const isEditMode = route.path === `/edit/${route.params.id}`;
-
 defineProps({
   title: String,
 });
