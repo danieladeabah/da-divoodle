@@ -26,7 +26,6 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
 import copyIcon from "@/assets/copyIcon.svg";
 import checkIcon from "@/assets/checkIcon.svg";
 

@@ -34,6 +34,7 @@
 <script setup>
 import { useSurveyStore } from "@/store/survey";
 import texts from "../texts/texts.json";
+import ViewBox from "~/layouts/ViewBox.vue";
 
 const route = useRoute();
 const surveyId = route.params.id;
