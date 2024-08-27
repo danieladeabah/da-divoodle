@@ -122,8 +122,8 @@
 <script setup>
 import { useSurveyStore } from "@/store/survey";
 import { encodeBase62 } from "@/utils/encodeBase62";
-import texts from "../texts/texts.json";
-import ViewBox from "~/layouts/ViewBox.vue";
+import texts from "@/texts/texts.json";
+import ViewBox from "@/layouts/ViewBox.vue";
 
 const props = defineProps({
   boxTitle: {

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { type Survey } from "../types/types";
+import { type Survey } from "@/types/types";
 
 export const useSurveyStore = defineStore("survey", {
   state: () => ({
